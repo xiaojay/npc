@@ -1,0 +1,2 @@
+# npc
+npc in reality
