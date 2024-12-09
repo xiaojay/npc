@@ -3,7 +3,7 @@ local bint = require('.bint')(1024)
 
 TARGET_WORLD_PID = "9a_YP6M7iN7b6QUoSvpoV3oe3CqxosyuJnraCucy5ss"
 WAR = "xU9zFkq3X2ZQ6olwNVvr1vUWIjc3kXTWr7xKQD6dh10"
-POOL = 'aGF7BWB_9B924sBXoirHy4KOceoCX72B77yh1nllMPA'
+POOL = 'dBbZhQoV4Lq9Bzbm0vlTrHmOZT7NchC_Dillbmqx0tM'
 Px = Px or nil
 Py = Py or nil
 Discount = 200
@@ -24,7 +24,7 @@ function Register()
     Data = json.encode({
       Type = "Avatar",
       Metadata = {
-        DisplayName = "Permaswap",
+        DisplayName = "LLAMASwap",
         SkinNumber = 1,
         Interaction = {
             Type = 'SchemaExternalForm',
