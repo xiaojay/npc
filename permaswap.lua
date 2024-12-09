@@ -122,16 +122,10 @@ end
 Handlers.add(
   "CronTick",                                      
   Handlers.utils.hasMatchingTag("Action", "Cron"), 
-  function()                                      
-    Send({Target = POOL, Action = "Info"})
-    Move()
+  function()
+    Move()                                    
+    local info = Send({Target = POOL, Action = "Info"}).receive()
+    Px = info.PX
+    Py = info.PY
   end
-)
-
-Handlers.add('infoResponse', Handlers.utils.hasMatchingTag('Action', 'InfoResponse'), 
-    function(msg)
-      assert(msg.From == POOL, 'Only accept info from pool process')
-      Px = msg.PX
-      Py = msg.PY
-    end
 )
