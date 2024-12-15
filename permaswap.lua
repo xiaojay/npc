@@ -4,8 +4,6 @@ local bint = require('.bint')(1024)
 TARGET_WORLD_PID = "9a_YP6M7iN7b6QUoSvpoV3oe3CqxosyuJnraCucy5ss"
 WAR = "xU9zFkq3X2ZQ6olwNVvr1vUWIjc3kXTWr7xKQD6dh10"
 POOL = 'dBbZhQoV4Lq9Bzbm0vlTrHmOZT7NchC_Dillbmqx0tM'
-Px = Px or nil
-Py = Py or nil
 Discount = 200
 
 local function getAmountOut(amountIn, reserveIn, reserveOut, discount)
@@ -55,8 +53,9 @@ Handlers.add(
   Handlers.utils.hasMatchingTag('Action', 'SchemaExternal'),
   function(msg)
     local amountIn = bint('50000000000')
-    local reserveIn = bint(Py)
-    local reserveOut = bint(Px)
+    local info = Send({Target = POOL, Action = "Info"}).receive()
+    local reserveIn = bint(info.PY)
+    local reserveOut = bint(info.PX)
     local amountOut = getAmountOut(amountIn, reserveIn, reserveOut, Discount)
     local formatted = string.format("%.2f", math.floor(amountOut/10000000000) / 100)
 
@@ -124,8 +123,5 @@ Handlers.add(
   Handlers.utils.hasMatchingTag("Action", "Cron"), 
   function()
     Move()                                    
-    local info = Send({Target = POOL, Action = "Info"}).receive()
-    Px = info.PX
-    Py = info.PY
   end
 )
